@@ -75,7 +75,7 @@
       return _fod( 'function', ws );
     })( W['WebSocket'] );
     Q[ 'XHR' ] = (function( xhr ){
-      var _fox = Q[ 'core' ][ 'firstOrDefault' ];
+      var _fod = Q[ 'core' ][ 'firstOrDefault' ];
       return _fod( 'function', xhr );
     })( W['XMLHttpRequest'] );
   })( _qgyu );

@@ -29,9 +29,7 @@
       ];
       var _self = this;
       _verbs.forEach( function( v ){
-        if ( /not$/.test( v.verb ) ) {
-        }
-        else {
+        if ( !/not$/.test( v.verb ) ) {
           _verbs[ _verbs.length ] = {
             'verb' : v.verb + '_not',
             'cond' : function( g, e ){ return ! v.cond( g, e ); }
