@@ -7,8 +7,8 @@
   var _qgyu = {};
   /// QGYU.dom
   (function(Q){
-    Q[ 'core' ] = (function( qcore ){
-      var _qcore = qcore || {};
+    Q[ 'core' ] = (function(){
+      var _qcore = {};
       _qcore[ 'mixin' ] = function( base, ext ){
         var _deriv = { };
         for ( var i in base ){ _deriv[ i ] = base[ i ]; }
@@ -17,20 +17,20 @@
       };
       _qcore[ 'argunmentsException' ] = function(msg){ this.msg = msg; };
       _qcore[ 'firstOrDefault' ] = function(){
-        var type = arguments[ 0 ], first = arguments[ 1 ];
-        if ( typeof type !== 'string' ) {
-          throw new qcore[ 'argumentsException' ]('firstOrDefault arg[0] must be string');
+        var _type = arguments[ 0 ], _first = arguments[ 1 ];
+        if ( typeof _type !== 'string' ) {
+          throw new qcore[ 'argumentsException' ]( 'firstOrDefault arg[0] must be string' );
         }
-        return ( typeof first === type ) ? first : _EMPTY[ type.toUpper() ];
+        return ( typeof _first === _type ) ? _first : _EMPTY[ type.toUpper() ];
       };
       return _qcore;
-    })( Q[ 'core' ] );
+    })();
 
     Q[ 'exception' ] = (function(){
       
     })();
 
-    Q[ 'capable' ] = (function(){
+    Q[ 'capablity' ] = (function(){
 
     })();
 
@@ -75,7 +75,7 @@
       return _fod( 'function', ws );
     })( W['WebSocket'] );
     Q[ 'XHR' ] = (function( xhr ){
-      var _fox = Q[ 'core' ][ 'firstOrDefault' ];
+      var _fod = Q[ 'core' ][ 'firstOrDefault' ];
       return _fod( 'function', xhr );
     })( W['XMLHttpRequest'] );
   })( _qgyu );
