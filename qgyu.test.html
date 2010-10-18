@@ -5,8 +5,9 @@
     <meta http-equiv="Content-Style-Type" content="text/css" />
     <meta http-equiv="Content-Script-Type" content="text/javasript" />
     <style type="text/css"> 
-      .ok { border: #66ff66 1px solid; background-color: #ccffcc; }
-      .ng { border: #ff6666 1px solid; background-color: #ffcccc; }
+      div,p { margin : 0; padding : 0; line-height : 1.2; }
+      .ok { border : #66ff66 1px solid; background-color: #ccffcc; }
+      .ng { border : #ff6666 1px solid; background-color: #ffcccc; }
     </style>
     <script type="text/javascript" src="./qgyu.js"></script>
     <script type="text/javascript" src="./qgyu.test.js"></script>
@@ -24,27 +25,28 @@
               QGYU.dom.p( {}, 'Got      : <' + g + '>' + '[' + typeof g + ']' ) ) );
         }
       };
-      var utest = new QGYU.test( '', 0, htmlWriter );
     </script>
     <title>qgyu.test.html</title>
   </head>
   <body>
     <script type="text/javascript">
-      utest.is    ( '1 is 1', 1, 1 );
-      utest.is    ( '1 is 2 fail', 1, 2 );
-      utest.is_not( '1 is not 2', 1, 2 );
-      utest.is_not( '1 is not 1 fail', 1, 2 );
-      
-      utest.exact    ( '"1" is exact "1"',    "1", "1" );
-      utest.exact    ( 'FAIL;1 is exact 2 fail',   1, 2 );
-      utest.exact    ( 'FAIL;1 is exact "1" fail', 1, "1" );
-      utest.exact_not( '"1" is not exact 1',    "1", 1 );
-      utest.exact_not( '"1" is not exact "2"',  "1", "2" );
-      utest.exact_not( '{} is not exact []',  {}, [] );
-      utest.exact_not( '{} is not exact {}',  {}, {} );
-      utest.exact_not( '[] is not exact []',  [], [] );
-      utest.exact_not( 'NaN is not exact NaN',  0/0, 0/0 );
-      utest.exact_not( 'FAIL;"1" is not exact "1"',  "1", "1" );
+      (function(utest){
+        utest.is( '1 is 1', 1, 1 );
+        utest.is( '1 is "1"', 1, "1" );
+        utest.is_not( '1 is not 2', 1, 2 );
+        utest.is_not( '{} is not {}', {}, {} );
+        utest.exact    ( '"1" is exact "1"',   "1", "1" );
+        utest.exact    ( '1 is exact 1',        1,   1 );
+        utest.exact_not( '"1" is not exact 1', "1", 1 );
+        utest.exact_not( '{} is not exact {}',  {}, {} );
+        utest.exact_not( '[] is not exact []',  [], [] );
+        utest.exact_not( 'NaN is not exact NaN',  0/0, 0/0 );
+        utest.type( 'typeof 1 is number', 1, 'number' );
+        utest.type( 'typeof "1" is string', '1', 'string' );
+        utest.type( 'typeof {} is object', {}, 'object' );
+        utest.type( 'typeof [] is object', [], 'object' );
+        utest.type( 'typeof function(){} is object', function(){}, 'function' );
+      })( new QGYU.test( '', 0, htmlWriter ) );
     </script>
   </body>
 </html>

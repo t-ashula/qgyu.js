@@ -7,8 +7,8 @@
   var _qgyu = {};
   /// QGYU.dom
   (function(Q){
-    Q[ 'core' ] = (function( qcore ){
-      var _qcore = qcore || {};
+    Q[ 'core' ] = (function(){
+      var _qcore = {};
       _qcore[ 'mixin' ] = function( base, ext ){
         var _deriv = { };
         for ( var i in base ){ _deriv[ i ] = base[ i ]; }
@@ -24,13 +24,24 @@
         return ( typeof first === type ) ? first : _EMPTY[ type.toUpper() ];
       };
       return _qcore;
-    })( Q[ 'core' ] );
-
-    Q[ 'exception' ] = (function(){
-      
     })();
 
-    Q[ 'capable' ] = (function(){
+    Q[ 'exception' ] = (function(){
+      var _qex = {};
+      _qex[ 'Exception' ] = function( name ){
+        var _ex = function( msg ) {
+          this.name = name;
+          this.msg = msg;
+        };
+        _ex.prototype.what = function(){
+          return this.name + " : " + this.msg;
+        };
+        return _ex;
+      };
+      _qex[ 'Arguments' ] = new _qex[ 'Exception' ]( 'ArgumentsException' );
+    })();
+
+    Q[ 'capability' ] = (function(){
 
     })();
 
