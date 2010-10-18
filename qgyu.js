@@ -27,10 +27,21 @@
     })();
 
     Q[ 'exception' ] = (function(){
-      
+      var _qex = {};
+      _qex[ 'Exception' ] = function( name ){
+        var _ex = function( msg ) {
+          this.name = name;
+          this.msg = msg;
+        };
+        _ex.prototype.what = function(){
+          return this.name + " : " + this.msg;
+        };
+        return _ex;
+      };
+      _qex[ 'Arguments' ] = new _qex[ 'Exception' ]( 'ArgumentsException' );
     })();
 
-    Q[ 'capablity' ] = (function(){
+    Q[ 'capability' ] = (function(){
 
     })();
 
