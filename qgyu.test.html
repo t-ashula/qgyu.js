@@ -15,7 +15,15 @@
     <title>qgyu.test.html</title>
   </head>
   <body>
-    <script type="text/javascript" src="./test/00.test.js"></script>
+    <script type="text/javascript">
+      var tests = [ "00.test", "01.core"];//, "02.exception", "03.capability", "04.dom" ];
+      for ( var i = 0, t; t = tests[ i ]; ++i ){
+        document.body.appendChild( 
+          QGYU.dom.div( { 'id': t },
+            QGYU.dom.h2( {}, t ),
+            QGYU.dom.script( { 'src' : './test/' + t + '.js' } ) ) );
+      }
+    </script>
   </body>
 </html>
     

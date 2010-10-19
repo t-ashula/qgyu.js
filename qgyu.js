@@ -3,32 +3,31 @@
  */
 (function(W){
   var D = W['document'];
-  var _EMPTY = { FUNCTION : function(){}, OBJECT : {}, ARRAY : [], STRING  : "" };
+  var _EMPTY = { FUNCTION : function(){}, OBJECT : {}, ARRAY : [], STRING  : "", NUMBER : 0 };
   var _qgyu = {};
   /// QGYU.dom
   (function(Q){
     Q[ 'core' ] = (function(){
       var _qcore = {};
       _qcore[ 'mixin' ] = function( base, ext ){
-        var _deriv = { };
-        for ( var i in base ){ _deriv[ i ] = base[ i ]; }
-        for ( var j in ext ){ _deriv[ j ] = ext[ j ]; }
+        var _deriv = {};
+        for ( var i in base ){ _deriv.prototype[ i ] = base[ i ]; }
+        for ( var j in ext ){ _deriv.prototype[ j ] = ext[ j ]; }
         return _deriv;
       };
-      _qcore[ 'argunmentsException' ] = function(msg){ this.msg = msg; };
       _qcore[ 'firstOrDefault' ] = function(){
         var _type = arguments[ 0 ], _first = arguments[ 1 ];
         if ( typeof _type !== 'string' ) {
-          throw new qcore[ 'argumentsException' ]( 'firstOrDefault arg[0] must be string' );
+          throw new Q.exceptions.Arguments( 'firstOrDefault arg[0] must be string' );
         }
-        return ( typeof _first === _type ) ? _first : _EMPTY[ type.toUpper() ];
+        return ( typeof _first === _type.toLowerCase() ) ? _first : _EMPTY[ _type.toUpperCase() ];
       };
       return _qcore;
     })();
 
-    Q[ 'exception' ] = (function(){
+    Q[ 'exceptions' ] = (function(){
       var _qex = {};
-      _qex[ 'Exception' ] = function( name ){
+      _qex[ 'base' ] = function( name ){
         var _ex = function( msg ) {
           this.name = name;
           this.msg = msg;
@@ -38,7 +37,9 @@
         };
         return _ex;
       };
-      _qex[ 'Arguments' ] = new _qex[ 'Exception' ]( 'ArgumentsException' );
+      _qex[ 'Exception' ] = new _qex[ 'base' ]( 'Exception' );
+      _qex[ 'Arguments' ] = new _qex[ 'base' ]( 'ArgumentsException' );
+      return _qex;
     })();
 
     Q[ 'capability' ] = (function(){

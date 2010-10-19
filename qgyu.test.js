@@ -3,13 +3,24 @@
  * 
  */
 (function( Q ){
-  Q['test'] = (function(){
+  Q[ 'testWriter' ] = (function(){
+    var _writer = {
+      to : undefined,
+      ok : function(){},
+      ng : function(){},
+      a : function(){},
+      b : function(){},
+      h : function(){}
+    };
+    return _writer;
+  })( Q );
+  Q[ 'test' ] = (function(){
     var _test = function( name, plan, writer ){
       this.name_ = name || 'QGYU Test';
       this.plan_ = plan || -1;
       this.count_ = 0;
       this.writer_ = writer;
-      var nwr = { 'ok' : function(){}, 'ng' : function(){}, 'b' : function(){}, 'a' : function(){}, 'h' : function(){} };
+      var nwr = Q['testWriter'];
       for( var op in nwr ){
         if ( nwr.hasOwnProperty( op ) ) {
           if ( !this.writer_[ op ] ) {
@@ -21,6 +32,8 @@
          { 'verb' : 'is',    'cond' : function( g, e ) { return g == e; } }
         ,{ 'verb' : 'exact', 'cond' : function( g, e ) { return g === e; } }
         ,{ 'verb' : 'type',  'cond' : function( g, e ) { return (typeof g) === e; } }
+        ,{ 'verb' : 'exist', 'cond' : function( g ) { return g !== undefined && g !== null; } }
+
 /*        ,{ 'verb' : 'deep',
            'cond' : function( g, e ) {
              function deeply( lhs, rhs ) {

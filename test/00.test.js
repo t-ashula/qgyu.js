@@ -14,5 +14,10 @@
   utest.type( 'typeof {} is object', {}, 'object' );
   utest.type( 'typeof [] is object', [], 'object' );
   utest.type( 'typeof function(){} is object', function(){}, 'function' );
-})( new QGYU.test( '', 0, htmlWriter ) );
+  utest.exist( 'exist window', window );
+  utest.exist( 'exist qgyu', QGYU );
+  utest.exist( 'exist 0', 0 );
+  utest.exist_not( 'not exist undef', undefined );
+  utest.exist_not( 'not exist null', null );
+})( new QGYU.test( 'test fw test', 0, new htmlWriter( document.getElementById( '00.test' ) ) ) );
 
