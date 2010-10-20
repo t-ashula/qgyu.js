@@ -27,23 +27,26 @@
 
     Q[ 'exceptions' ] = (function(){
       var _qex = {};
-      _qex[ 'base' ] = function( name ){
-        var _ex = function( msg ) {
+      var _ex = function( name ){
+        var _ = function( msg ) {
           this.name = name;
-          this.msg = msg;
+          this.msg = msg || ""; 
         };
-        _ex.prototype.what = function(){
+        _.prototype.what = function(){
           return this.name + " : " + this.msg;
         };
-        return _ex;
+        return _;
       };
-      _qex[ 'Exception' ] = new _qex[ 'base' ]( 'Exception' );
-      _qex[ 'Arguments' ] = new _qex[ 'base' ]( 'ArgumentsException' );
+      [ 'Exception', 'ArgumentsException' ].forEach(function(ex) {
+        _qex[ ex ] = new _ex( ex );
+      });
       return _qex;
     })();
 
     Q[ 'capability' ] = (function(){
-
+      var _cap = {        
+      };
+      return _cap;
     })();
 
     Q[ 'dom' ] = (function(){
@@ -64,9 +67,9 @@
             }
           }
           for ( var i = 1, n; n = arguments[ i ]; ++i ) {
-            e.appendChild( ( typeof n === 'string' ) ? D.createTextNode( n ) :  n ); 
+            _e.appendChild( ( typeof n === 'string' ) ? D.createTextNode( n ) :  n ); 
           }
-          return e;
+          return _e;
         };
       });
       return _dom;

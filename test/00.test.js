@@ -19,5 +19,10 @@
   utest.exist( 'exist 0', 0 );
   utest.exist_not( 'not exist undef', undefined );
   utest.exist_not( 'not exist null', null );
+
+  utest.raised( 'raise exception "foo"', function(){ throw 'foo'; } );
+  utest.raised( 'raise exception is "foo" ?', function(){ throw 'foo'; }, 'foo' );
+  utest.raised_not( 'raise exception is not "bar" ?', function(){ throw 'foo'; }, 'bar' );
+
 })( new QGYU.test( 'test fw test', 0, new htmlWriter( document.getElementById( '00.test' ) ) ) );
 

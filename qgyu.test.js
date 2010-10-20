@@ -33,6 +33,22 @@
         ,{ 'verb' : 'exact', 'cond' : function( g, e ) { return g === e; } }
         ,{ 'verb' : 'type',  'cond' : function( g, e ) { return (typeof g) === e; } }
         ,{ 'verb' : 'exist', 'cond' : function( g ) { return g !== undefined && g !== null; } }
+        ,{ 'verb' : 'raised',
+           'cond' : function( g, e ) {
+             if ( typeof g !== 'function' ){
+               return true;
+             }
+             try {
+               g();
+             }
+             catch (exp) {
+               if ( e ){
+                 return exp.name && e.name && exp.name === e.name || e === exp;
+               }
+               return true;
+             }
+             return false;
+           } }
 
 /*        ,{ 'verb' : 'deep',
            'cond' : function( g, e ) {
