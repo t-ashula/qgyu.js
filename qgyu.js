@@ -57,10 +57,10 @@
         'code','dfn','kbd','cite','q','img','object','applet' ];
       _html4.forEach( function( ele ){
         _dom[ ele ] = function(){
-          var e = D.createElement( ele ), as = arguments[ 0 ];
-          for ( var a in as ) {
-            if ( as[ 'hasOwnProperty' ]( a ) ) {
-              e.setAttribute( a, as[ a ] );
+          var _e = D.createElement( ele ), _as = arguments[ 0 ];
+          for ( var a in _as ) {
+            if ( _as[ 'hasOwnProperty' ]( a ) ) {
+              _e.setAttribute( a, _as[ a ] );
             }
           }
           for ( var i = 1, n; n = arguments[ i ]; ++i ) {
