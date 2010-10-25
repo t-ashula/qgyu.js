@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="Content-Script-Type" content="text/javasript" />
+    <style type="text/css"> 
+      div,p { margin : 0; padding : 0; line-height : 1.2; }
+      .ok { border : #66ff66 1px solid; background-color: #ccffcc; }
+      .ng { border : #ff6666 1px solid; background-color: #ffcccc; }
+    </style>
+    <script type="text/javascript" src="./qgyu.js"></script>
+    <script type="text/javascript" src="./qgyu.test.js"></script>
+    <script type="text/javascript" src="./test/htmlwriter.js"></script>
+    <title>qgyu.test.html</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      var tests = [ "00.test", "01.core", "02.exceptions", "03.capability", "04.dom" ];
+      for ( var i = 0, t; t = tests[ i ]; ++i ){
+        document.body.appendChild( 
+          QGYU.dom.div( { 'id': t },
+            QGYU.dom.h2( {}, t ),
+            QGYU.dom.script( { 'src' : './test/' + t + '.js' } ) ) );
+      }
+    </script>
+  </body>
+</html>
+    
