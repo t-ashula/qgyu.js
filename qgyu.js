@@ -6,7 +6,7 @@
   var _EMPTY = { FUNCTION : function(){}, OBJECT : {}, ARRAY : [], STRING  : "", NUMBER : 0 };
   var _qgyu = {};
   /// QGYU.dom
-  (function(Q){
+  (function( Q ){
     Q[ 'core' ] = (function(){
       var _qcore = {};
       _qcore[ 'mixin' ] = function( base, ext ){
