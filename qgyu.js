@@ -29,7 +29,7 @@
         return ( typeof _first === _type.toLowerCase() ) ? _first : Q[ 'const' ].EMPTY[ _type.toUpperCase() ];
       };
       return _qcore;
-    })();
+    })( _qgyu );
 
     Q[ 'exceptions' ] = (function(){
       var _qex = {};
@@ -99,24 +99,46 @@
         var s = D.createElementNS( 'http://www.w3.org/2000/svg', 'svg' );
         return !!s && _( s.createSVGPoint, 'function' );
       })();
-      _cap[ 'DOM2Event' ] = (_cap.addEventListener && _cap.removeEventListener && _cap.dispatchEvent);
+      _cap[ 'apng' ] = (function(){
+     /**
+      * apng-detect.js
+      * 2010-06-13
+      * By Elijah Grey, http://eligrey.com
+      * http://code.eligrey.com/apng-detect/apng-detect.js
+      * Public Domain. 
+      * NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
+      */
+	"use strict";
+	var apngTest = new Image(),
+	  ctx = D.createElement( "canvas" ).getContext( "2d" ), supported = false;
+	apngTest.onload = function () {
+	  ctx.drawImage( apngTest, 0, 0 );
+	  _cap.apng = supported = ( ctx.getImageData( 0, 0, 1, 1 ).data[ 3 ] === 0 );
+	};
+	apngTest.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACGFjVEwAAAABAAAAAcMq2TYAAAANSURBVAiZY2BgYPgPAAEEAQB9ssjfAAAAGmZjVEwAAAAAAAAAAQAAAAEAAAAAAAAAAAD6A+gBAbNU+2sAAAARZmRBVAAAAAEImWNgYGBgAAAABQAB6MzFdgAAAABJRU5ErkJggg==";
+        return supported;
+      })();
+      _cap[ 'DOM2Event' ] = ( _cap.addEventListener && _cap.removeEventListener && _cap.dispatchEvent );
       return _cap;
     })();
 
     Q[ 'dom' ] = (function(){
-      var _dom = {};
-      var _html4 = [
-        'html', 'head','title','meta','link','script','style',
-        'body','div','span','a','p','br','hr', 'pre','blockquote','address','ins','del',
-        'table','thead','tbody','tfoot','caption','colgroup','cols','tr','th','td',
-        'form','input','label','legend','button','textarea',
-        'ul','ol','li','dl','dt','dd', 'h1','h2','h3','h4','h5','h6',
-        'code','dfn','kbd','cite','q','img','object','applet' ];
+      var _dom = {},
+        _html4 = [
+          'html', 'head','title','meta','link','script','style',
+          'body','div','span','a','p','br','hr', 'pre','blockquote','address','ins','del',
+          'table','thead','tbody','tfoot','caption','colgroup','cols','tr','th','td',
+          'form','input','label','legend','button','textarea',
+          'ul','ol','li','dl','dt','dd', 'h1','h2','h3','h4','h5','h6',
+          'code','dfn','kbd','cite','q','img','object','applet' ],
+        _html5 = [
+          'embed', 'meter', 'video', 'audio', 'canvas'
+        ];
       _html4.forEach( function( ele ){
         _dom[ ele ] = function(){
-          var _e = D.createElement( ele ), _as = arguments[ 0 ];
-          for ( var a in _as ) {
-            if ( _as[ 'hasOwnProperty' ]( a ) ) {
+          var _e = D.createElement( ele ), _as = arguments[ 0 ], a;
+          for ( a in _as ) {
+            if ( _as.hasOwnProperty( a ) ) {
               _e.setAttribute( a, _as[ a ] );
             }
           }

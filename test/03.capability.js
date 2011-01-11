@@ -8,7 +8,7 @@
     'XHR', 'WebSockets', 'EventSource',
     'LocalStorage', 'SessionStorage', 'WebDatabase', 'IndexedDB',
     'WebWorker',
-    'video', 'audio', 'canvas', 'svg'
+    'video', 'audio', 'canvas', 'svg', 'apng'
   ];
   caps.forEach( function( cap ){
     utest.exist( 'QGYU.capability.' + cap + ' exist', QGYU.capability[ cap ] );
