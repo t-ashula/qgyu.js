@@ -20,8 +20,8 @@
       this.plan_ = plan || -1;
       this.count_ = 0;
       this.writer_ = writer;
-      var nwr = Q['testWriter'];
-      for( var op in nwr ){
+      var nwr = Q[ 'testWriter' ], op;
+      for( op in nwr ){
         if ( nwr.hasOwnProperty( op ) ) {
           if ( !this.writer_[ op ] ) {
             this.writer_[ op ] = nwr[ op ];

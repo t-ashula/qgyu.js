@@ -17,7 +17,6 @@
 
   utest.raised(
     'QGYU.core.firstOrDefault() raise QGYU.exceptions.Arguments',
-    function(){ QGYU.core.firstOrDefault(1); }, new QGYU.exceptions.Arguments('') );
-  
+    function(){ QGYU.core.firstOrDefault( 1 ); }, new QGYU.exceptions.ArgumentsException('') );
 })( new QGYU.test( 'QGYU.core test', 0, new htmlWriter( document.getElementById( '01.core' ) ) ) );
 
