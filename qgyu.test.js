@@ -5,7 +5,7 @@
 (function( Q ){
   Q[ 'testWriter' ] = (function(){
     var _writer = {
-      to : undefined,
+      to : void 0,
       ok : function(){},
       ng : function(){},
       a : function(){},
@@ -13,7 +13,7 @@
       h : function(){}
     };
     return _writer;
-  })( Q );
+  })();
   Q[ 'test' ] = (function(){
     var _test = function( name, plan, writer ){
       this.name_ = name || 'QGYU Test';
@@ -32,6 +32,14 @@
          { 'verb' : 'is',    'cond' : function( g, e ) { return g == e; } }
         ,{ 'verb' : 'exact', 'cond' : function( g, e ) { return g === e; } }
         ,{ 'verb' : 'type',  'cond' : function( g, e ) { return (typeof g) === e; } }
+        ,{ 'verb' : 'like',
+           'cond' : function( g, e ) {
+             var to_s = Object.prototype.toString,
+               gg = typeof g === 'string' ? g : to_s.call( g ),
+               ee = typeof e === 'string' ? e : to_s.call( e );
+             return gg == ee;
+           }
+         }
         ,{ 'verb' : 'exist', 'cond' : function( g ) { return g !== undefined && g !== null; } }
         ,{ 'verb' : 'raised',
            'cond' : function( g, e ) {

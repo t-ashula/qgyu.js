@@ -13,7 +13,12 @@
   utest.type( 'typeof "1" is string', '1', 'string' );
   utest.type( 'typeof {} is object', {}, 'object' );
   utest.type( 'typeof [] is object', [], 'object' );
-  utest.type( 'typeof function(){} is object', function(){}, 'function' );
+  utest.type( 'typeof function(){} is function', function(){}, 'function' );
+
+  utest.like( 'string like String', "", String(""));
+  utest.like( '0 like Number(0)', 0, Number(0));
+  utest.like( 'new Image() like HTMLImageElement ?', new Image(), document.createElement('img') );
+
   utest.exist( 'exist window', window );
   utest.exist( 'exist qgyu', QGYU );
   utest.exist( 'exist 0', 0 );
